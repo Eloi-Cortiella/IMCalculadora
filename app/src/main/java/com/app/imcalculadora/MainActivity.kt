@@ -68,12 +68,12 @@ fun IMCScreen(modifier: Modifier = Modifier) {
     var sexe by remember { mutableStateOf<Sexe?>(null) }
     var resultat by remember { mutableStateOf<ResultatIMC?>(null) }
     var errorInput by remember { mutableStateOf<String?>(null) }
-    // NOU: Estat per controlar la visibilitat del diàleg informatiu
+    // Estat per controlar la visibilitat del diàleg informatiu
     var mostrarInfoDialog by remember { mutableStateOf(false) }
 
     val focusManager = LocalFocusManager.current
 
-    // NOU: Mostra el diàleg si l'estat és true
+    // Mostraria el diàleg si l'estat lo te en true
     if (mostrarInfoDialog) {
         InfoDialog(onDismiss = { mostrarInfoDialog = false })
     }
@@ -85,7 +85,7 @@ fun IMCScreen(modifier: Modifier = Modifier) {
             .verticalScroll(rememberScrollState()),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        // MODIFICAT: Fila per al títol i el botó d'informació
+        // Fila per al títol i el botó d'informació
         Row(
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.Center
@@ -114,7 +114,7 @@ fun IMCScreen(modifier: Modifier = Modifier) {
             elevation = CardDefaults.cardElevation(defaultElevation = 4.dp)
         ) {
             Column(modifier = Modifier.padding(16.dp)) {
-                // Selecció de Sexe
+                // Selecció per al Sexe
                 Text("Sexe", style = MaterialTheme.typography.bodyLarge, fontWeight = FontWeight.SemiBold)
                 Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(16.dp)) {
                     BotoSeleccio(
@@ -133,7 +133,7 @@ fun IMCScreen(modifier: Modifier = Modifier) {
 
                 Spacer(modifier = Modifier.height(16.dp))
 
-                // Camps de text (sense canvis)
+                // Camps de text (Pes, alçada edat)
                 OutlinedTextField(
                     value = pes,
                     onValueChange = { pes = it.replace(',', '.'); errorInput = null },
@@ -200,7 +200,7 @@ fun IMCScreen(modifier: Modifier = Modifier) {
     }
 }
 
-// NOU: Composable per al diàleg informatiu
+// Composable per al diàleg informatiu
 @Composable
 fun InfoDialog(onDismiss: () -> Unit) {
     AlertDialog(
@@ -221,7 +221,7 @@ fun InfoDialog(onDismiss: () -> Unit) {
     )
 }
 
-// Botó personalitzat per a la selecció (sense canvis)
+// Botó personalitzat per a la selecció
 @Composable
 fun BotoSeleccio(text: String, seleccionat: Boolean, onClick: () -> Unit, modifier: Modifier = Modifier) {
     OutlinedButton(
@@ -236,7 +236,7 @@ fun BotoSeleccio(text: String, seleccionat: Boolean, onClick: () -> Unit, modifi
     }
 }
 
-// MODIFICAT: Funció de càlcul amb rangs ajustats per sexe
+// Funció de càlcul amb rangs ajustats per sexe
 fun calcularResultatComplet(pes: Float, alcada: Float, edat: Int, sexe: Sexe): ResultatIMC {
     val imc = pes / alcada.pow(2)
 
@@ -268,7 +268,7 @@ fun calcularResultatComplet(pes: Float, alcada: Float, edat: Int, sexe: Sexe): R
     return ResultatIMC(imc, classificacio, color, Pair(pesMin, pesMax), consell)
 }
 
-// ResultatCard i InfoSection (sense canvis significatius)
+// ResultatCard i InfoSection
 @Composable
 fun ResultatCard(resultat: ResultatIMC) {
     Card(
